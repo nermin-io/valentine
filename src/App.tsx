@@ -1,3 +1,9 @@
+import { Card } from "./components/Card.tsx";
+
 export default function App() {
-  return <div>Valentine App</div>;
+  return (
+    <div className="h-screen flex items-center justify-center">
+      <Card />
+    </div>
+  );
 }

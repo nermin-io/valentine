@@ -8,18 +8,21 @@
   :root {
     --pink: #FDB5C9;
     --light-pink: #FBE9E7;
+    --medium-pink: #eed5d3;
     --dark-pink: #F47A7F;
+    --darker-pink: #e1666a;
     --off-white: #FAFFF9;
     --radius: 0.5rem;
     --foreground: #322220;
 
     --font-cursive: 'Single Day', cursive;
   }
-
 }
 
 @layer base {
   body {
     @apply bg-pink text-foreground;
+    background-color: #FDB5C9;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #FDB5C9 10px ), repeating-linear-gradient( #f1a4ba55, #f1a4ba );
   }
 }
