@@ -12,7 +12,7 @@ const buttonVariants = cva(
         secondary: "border-pink-dark border-2 hover:bg-pink-medium",
       },
       size: {
-        default: "h-14 rounded-md px-8 text-2xl",
+        default: "lg:h-14 rounded-md lg:text-2xl text-md h-12 px-4 lg:px-8",
       },
     },
     defaultVariants: {
