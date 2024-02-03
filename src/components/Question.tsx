@@ -30,6 +30,7 @@ export function Question({ onSuccess }: QuestionProps) {
 
   const response = responses[Math.min(clickCount, responses.length - 1)];
   const scale = Math.min(1 + clickCount / 10, 3);
+
   return (
     <>
       <div className="flex flex-col items-center gap-10">
