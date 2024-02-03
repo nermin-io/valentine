@@ -1,3 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --pink: #FDB5C9;
+    --light-pink: #FBE9E7;
+    --dark-pink: #F47A7F;
+    --off-white: #FAFFF9;
+    --radius: 0.5rem;
+    --foreground: #322220;
+
+    --font-cursive: 'Single Day', cursive;
+  }
+
+}
+
+@layer base {
+  body {
+    @apply bg-pink text-foreground;
+  }
+}
