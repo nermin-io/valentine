@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/select";
 import { options } from "@/config";
+import { createGoogleCalendarEventLink } from "@/utils.ts";
 
 const formSchema = z.object({
   dinner: z.enum(options.dinner),
@@ -32,12 +33,25 @@ export function BookingForm() {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
-
   const { isValid } = form.formState;
-  console.log("isValid", isValid);
 
   const onSubmit = (data: FormData) => {
-    console.log("submitted", data);
+    const details = `Alright, what's all this then?!! Well I'm glad you asked:
+- Dinner: ${data.dinner}
+- Drinks: ${data.drink}
+- Snack: ${data.snack}
+- Activities: ${data.activity}
+- BONUS MATERIAL: Nermin gets a cold beer (How'd that get in there)`;
+
+    const link = createGoogleCalendarEventLink({
+      title: "Valentine's Date Night 💖",
+      details: details,
+      location: "24 Admirala Avenue, Dandenong North VIC 3175, Australia",
+      attendees: ["sehicnermin97@gmail.com"],
+      startDate: new Date("2025-02-14T19:00:00+11:00"),
+      endDate: new Date("2025-02-14T23:00:00+11:00"),
+    });
+    window.open(link, "_blank");
   };
 
   return (

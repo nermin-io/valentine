@@ -14,7 +14,7 @@ export function Question({ onResponse }: QuestionProps) {
         </h1>
         <p className="text-lg">— BDB</p>
       </div>
-      <div className="flex flex-row gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <Button variant="primary" onClick={() => onResponse("yes")}>
           Abso-fucking-lutely
         </Button>
