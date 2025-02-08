@@ -33,7 +33,7 @@ export function BookingForm() {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
-  const { isValid } = form.formState;
+  const { isValid, isSubmitted } = form.formState;
 
   const onSubmit = (data: FormData) => {
     const details = `Alright, what's all this then?!! Well I'm glad you asked:
@@ -57,127 +57,138 @@ export function BookingForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="flex flex-col gap-1">
-          <h1 className="md:text-7xl text-5xl font-medium">
-            Finally, let's lock it in!
-          </h1>
-          <p className="text-lg">What you wanna do?</p>
-        </div>
-        <div className="card bg-white p-3 rounded-md text-left space-y-8">
-          <div className="space-y-3">
-            <FormField
-              control={form.control}
-              name="dinner"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Dinner</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a dinner" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {options.dinner.map((opt) => (
-                        <SelectItem key={opt} value={opt}>
-                          {opt}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="drink"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Drink</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a drink" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {options.drinks.map((opt) => (
-                        <SelectItem value={opt} key={opt}>
-                          {opt}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="snack"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Snack</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a snack" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {options.snacks.map((opt) => (
-                        <SelectItem value={opt} key={opt}>
-                          {opt}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="activity"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Activity</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select an activity" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {options.activity.map((opt) => (
-                        <SelectItem value={opt} key={opt}>
-                          {opt}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        {isSubmitted ? (
+          <div className="flex flex-col gap-1">
+            <h1 className="md:text-7xl text-5xl font-medium">
+              Valentine's Date Night is secured 🔒
+            </h1>
+            <p className="text-lg">Habibi, see you on Friday 14 Feb</p>
           </div>
-          <Button type="submit" size="full" disabled={!isValid}>
-            Book Nermin (free)
-          </Button>
-        </div>
+        ) : (
+          <div className="flex flex-col gap-1">
+            <h1 className="md:text-7xl text-5xl font-medium">
+              Finally, let's lock it in!
+            </h1>
+            <p className="text-lg">What you wanna do?</p>
+          </div>
+        )}
+        {!isSubmitted && (
+          <div className="card bg-white p-3 rounded-md text-left space-y-8">
+            <div className="space-y-3">
+              <FormField
+                control={form.control}
+                name="dinner"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Dinner</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a dinner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {options.dinner.map((opt) => (
+                          <SelectItem key={opt} value={opt}>
+                            {opt}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="drink"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Drink</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a drink" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {options.drinks.map((opt) => (
+                          <SelectItem value={opt} key={opt}>
+                            {opt}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="snack"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Snack</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a snack" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {options.snacks.map((opt) => (
+                          <SelectItem value={opt} key={opt}>
+                            {opt}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="activity"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Activity</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select an activity" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {options.activity.map((opt) => (
+                          <SelectItem value={opt} key={opt}>
+                            {opt}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <Button type="submit" size="full" disabled={!isValid}>
+              Book Nermin (free)
+            </Button>
+          </div>
+        )}
       </form>
     </Form>
   );
